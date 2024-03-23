@@ -1,18 +1,11 @@
 #include <iostream>
 #include<string>
 using namespace std;
-int main(){
 
-    string num1;
-    string num2;
-    string result;
+string NumSum(string& num1, string& num2){
+     string result;
 
-    cout<<"First number  >> ";
-    cin>>num1;
-    cout<<"Second number >> ";
-    cin>>num2;
-    
-    int i=num1.size()-1;
+     int i=num1.size()-1;
     int j=num2.size()-1;
     int carry=0;
 
@@ -37,8 +30,19 @@ int main(){
         j--;
 
     }
-    
+    return result;
+}
+int main(){
 
+    string num1,num2;
+
+    cout<<"First number  >> ";
+    cin>>num1;
+    cout<<"Second number >> ";
+    cin>>num2;
+    
+    string result=NumSum(num1,num2);
+    
     cout<<"Sum           >> "<<result<<endl;
 
     
