@@ -36,7 +36,13 @@ string NumSum(string& num1, string& num2){
 string NumSub(string& num1, string& num2){
 
     string result;
+    bool minus=false;
 
+    if(num1.size() < num2.size() || (num1.size() == num2.size() && num1 < num2)){
+        minus=true;
+        swap(num1,num2);
+    }
+    
     int i=num1.size()-1;
     int j=num2.size()-1;
     int borrow=0;
@@ -55,14 +61,16 @@ string NumSub(string& num1, string& num2){
         else{
             dig2=0;
         }
-        int diff=dig1-dig2-borrow;
-        if(diff<0){
-            diff+=10;
-            borrow=1;
+        dig1 -= borrow;
+        borrow = 0;
+        if (dig1 < dig2) {
+            dig1 += 10;
+            borrow = 1;
         }
-        else{
-            borrow=0;
-        }
+
+        int diff = dig1 - dig2;
+
+        
         result=char(diff%10+'0')+result;
         i--;
         j--;
@@ -70,6 +78,9 @@ string NumSub(string& num1, string& num2){
     }
     while(!result.empty()&&result[0]=='0'){
         result.erase(0,1);
+    }
+    if (minus && !result.empty() && result != "0") {
+        result = '-' + result;
     }
     return result;
 
