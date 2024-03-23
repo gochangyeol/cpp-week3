@@ -68,6 +68,9 @@ string NumSub(string& num1, string& num2){
         j--;
 
     }
+    while(!result.empty()&&result[0]=='0'){
+        result.erase(0,1);
+    }
     return result;
 
 
